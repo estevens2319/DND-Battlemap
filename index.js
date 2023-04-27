@@ -19,7 +19,7 @@ function printMousePos(event) {
 
 function showRules(){
   let rules = "ALL FILES UPLOADED SHOULD BE .PNG OR STUFF WILL BREAK" + '\n' + "How to navigate the map." + '\n' + "To change background:" + '\n' + "Click the background button and select a file for the background." + '\n' + "To move a character:" + '\n' + "Click on a character and move with the arrow keys" + '\n' + "To teleport a character:" + '\n' + "Click on a character, press the M key, click where on the map to teleport the character" + '\n' + "To add new characters:" + '\n' + "Click a C# button to add or change the icon of that character number" + '\n' 
-    + "To make a character prone: " + '\n' + "Click a character then press the P key" + '\n' + "To make a character stand: " + '\n' + "Click a character then press the S key" + '\n' + "Press = to enlarge a character" + '\n' + "Press - to shrink a character";
+    + "To make a character prone: (Uploaded characters cannot go prone) " + '\n' + "Click a character then press the P key" + '\n' + "To make a character stand: " + '\n' + "Click a character then press the S key" + '\n' + "Press = to enlarge a character" + '\n' + "Press - to shrink a character";
   alert(rules);
 
 }
