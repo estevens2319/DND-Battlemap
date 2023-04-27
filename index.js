@@ -36,9 +36,11 @@ function chooseCharacter(charName) {
 }
 
 function prone(charImg) {
+  if(character[0] !== "C")
   charImg.src = "./images/" + character + "prone.png";
 }
 function unprone(charImg) {
+  if (character[0] !== "C")
   charImg.src = "./images/" + character + ".png";
 }
 
