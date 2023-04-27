@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Eric Stevens </title>
+    <link rel="stylesheet" href="index.css">
+    <script type="text/javascript" src="index.js"></script>
+</head>
+    <input type='file' style="display:none;" id="uploadbackground" onchange="changeBG(this);" />  
+    <input type="button" id="changebackground" value="Background" onclick="document.getElementById('uploadbackground').click();" />
+    <input type='file' style="display:none;" id="C1Button" onchange="changeC(this, 'C1');" />
+    <input type="button" id="changeC1" value="C1" onclick="document.getElementById('C1Button').click();" />
+
+    <input type='file' style="display:none;" id="C2Button" onchange="changeC(this, 'C2');" />
+    <input type="button" id="changeC2" value="C2" onclick="document.getElementById('C2Button').click();" />
+
+    <input type='file' style="display:none;" id="C3Button" onchange="changeC(this, 'C3');" />
+    <input type="button" id="changeC3" value="C3" onclick="document.getElementById('C3Button').click();" />
+
+    <input type='file' style="display:none;" id="C4Button" onchange="changeC(this, 'C4');" />
+    <input type="button" id="changeC4" value="C4" onclick="document.getElementById('C4Button').click();" />
+
+    <input type='file' style="display:none;" id="C5Button" onchange="changeC(this, 'C5');" />
+    <input type="button" id="changeC5" value="C5" onclick="document.getElementById('C5Button').click();" />
+
+    <input type='file' style="display:none;" id="C6Button" onchange="changeC(this, 'C6');" />
+    <input type="button" id="changeC6" value="C6" onclick="document.getElementById('C6Button').click();" />
+
+    <input type='file' style="display:none;" id="C7Button" onchange="changeC(this, 'C7');" />
+    <input type="button" id="changeC7" value="C7" onclick="document.getElementById('C7Button').click();" />
+
+    <input type='file' style="display:none;" id="C8Button" onchange="changeC(this, 'C8');" />
+    <input type="button" id="changeC8" value="C8" onclick="document.getElementById('C8Button').click();" />
+
+    <input type='file' style="display:none;" id="C9Button" onchange="changeC(this, 'C9');" />
+    <input type="button" id="changeC9" value="C9" onclick="document.getElementById('C9Button').click();" />
+
+    <input type='file' style="display:none;" id="C10Button" onchange="changeC(this, 'C10');" />
+    <input type="button" id="changeC10" value="C10" onclick="document.getElementById('C10Button').click();" />
+    
+    <input type="button" id="rules" value="Info" onclick="showRules();" />
+
+</div>
+
+<body onLoad="docReady()">
+    <img id="bg" src="./images/forestmap.jpg" style="position:absolute;left: 0px; top:0px;z-index: -1" height="100%"
+        width="100%">
+    <img id="caedrel" src="./images/caedrel.png" style="position:absolute;left: 10px; top:100px;z-index: 2" width="4%"
+        onClick="chooseCharacter('caedrel')">
+    <img id="goos" src="./images/goos.png" style="position:absolute;left: 100px; top:100px;z-index: 2" width="4%"
+        onClick="chooseCharacter('goos')">
+    <img id="odra" src="./images/odra.png" style="position:absolute;left: 190px; top:100px;z-index: 2" width="4%"
+        onClick="chooseCharacter('odra')">
+    <img id="vallyn" src="./images/vallyn.png" style="position:absolute;left: 280px; top:100px;z-index: 2" width="4%"
+        onClick="chooseCharacter('vallyn')">
+    <img id="mika" src="./images/mika.png" style="position:absolute;left: 370px; top:100px;z-index: 2" width="4%"
+        onClick="chooseCharacter('mika')">
+    <img id="errol" src="./images/errol.png" style="position:absolute;left: 460px; top:100px;z-index: 2" width="4%"
+        onClick="chooseCharacter('errol')">
+    <img id="dante" src="./images/dante.png" style="position:absolute;left: 550px; top:100px;z-index: 2" width="4%"
+        onClick="chooseCharacter('dante')">
+
+    <img id="C1" src="" style="position:absolute;left: 10px; top:300px;z-index: 2" width="4%"
+        onClick="chooseCharacter('C1')">
+    <img id="C2" src="" style="position:absolute;left: 10px; top:300px;z-index: 2" width="4%"
+        onClick="chooseCharacter('C2')">
+    <img id="C3" src="" style="position:absolute;left: 10px; top:300px;z-index: 2" width="4%"
+        onClick="chooseCharacter('C3')">
+    <img id="C4" src="" style="position:absolute;left: 10px; top:300px;z-index: 2" width="4%"
+        onClick="chooseCharacter('C4')">
+    <img id="C5" src="" style="position:absolute;left: 10px; top:300px;z-index: 2" width="4%"
+        onClick="chooseCharacter('C5')">
+    <img id="C6" src="" style="position:absolute;left: 10px; top:300px;z-index: 2" width="4%"
+        onClick="chooseCharacter('C6')">
+    <img id="C7" src="" style="position:absolute;left: 10px; top:300px;z-index: 2" width="4%"
+        onClick="chooseCharacter('C7')">
+    <img id="C8" src="" style="position:absolute;left: 10px; top:300px;z-index: 2" width="4%"
+        onClick="chooseCharacter('C8')">
+    <img id="C9" src="" style="position:absolute;left: 10px; top:300px;z-index: 2" width="4%"
+        onClick="chooseCharacter('C9')">
+    <img id="C10" src="" style="position:absolute;left: 10px; top:300px;z-index: 2" width="4%"
+        onClick="chooseCharacter('C10')">
+
+    
+
+
+    <img id="rightborder" style="position:absolute;right:0; top:0;" height="1px" width="1px">
+    <img id="bottomborder" style="position:absolute;right:0; bottom:0;" height="1px" width="1px">
+    
+    </html>
