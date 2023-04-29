@@ -1,25 +1,42 @@
-let character = "caedrel";
+let character = "eric";
 let facingRight = true;
 let speed = 1;
 let charImg = document.getElementById(character);
-let characterList = ["caedrel", "goos", "odra", "vallyn", "mika", "errol", "dante", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "C10"];
-let cMove = false;
-document.addEventListener("click", printMousePos);
+let characterList = ["eric", "jack", "matt", "haylee", "nice", "adam", "travis", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "C10"];
+let follow = false;
+let charClicked = true;
+let prone = false;
+let stand = false;
+let smallerSwitch = false;
+let biggerSwitch = false;
+document.addEventListener("click", mouseClicked);
+document.onmousemove = doaflip;
+  
+function mouseClicked(){
+  if(charClicked){
+    follow = true;
+    charClicked = false;
+  }
+  else{
+  follow = false;
+  }
+}
 
-function printMousePos(event) {
-  charImg = document.getElementById(character);
-  if (cMove) {
-    cMove = false;
-    let x = event.clientX;
-    let y = event.clientY;
+function doaflip(event) {
+  if (follow) {
+    event = event || window.event;
+    let y = event.pageY + 1;
+    let x = event.pageX + 1;
     charImg.style.top = y + 'px';
     charImg.style.left = x + 'px';
   }
 }
 
+
+
 function showRules(){
-  let rules = "How to navigate the map." + '\n' + "To change background:" + '\n' + "Click the background button and select a file for the background." + '\n' + "To move a character:" + '\n' + "Click on a character and move with the arrow keys" + '\n' + "To teleport a character:" + '\n' + "Click on a character, press the M key, click where on the map to teleport the character" + '\n' + "To add new characters:" + '\n' + "Click a C# button to add or change the icon of that character number" + '\n' 
-    + "To make a character prone: (Uploaded characters cannot go prone) " + '\n' + "Click a character then press the P key" + '\n' + "To make a character stand: " + '\n' + "Click a character then press the S key" + '\n' + "Press = to enlarge a character" + '\n' + "Press - to shrink a character";
+  let rules = "How to navigate the map." + '\n' + "To change background:" + '\n' + "Click the background button and select a file for the background." + '\n' + "To move a character:" + '\n' + "Click on a character and the character will follow the mouse until you click again." + '\n' + "To add new characters:" + '\n' + "Click a C# button to add or change the icon of that character number" + '\n' 
+    + "To make a character prone: (Uploaded characters cannot go prone) " + '\n' + "Press P key, click on a character" + '\n' + "To make a character stand: " + '\n' + "Press S key, click on a character" + '\n' + "To enlarge / shrink a character" + '\n' + "Press =/- key. Click a character until they are the desired size. Press =/- key again";
   alert(rules);
 
 }
@@ -28,25 +45,38 @@ function bigger(charImg){
 }
 function smaller(charImg){
 charImg.width = JSON.stringify(charImg.width - 10);
-
 }
 function chooseCharacter(charName) {
   character = charName;
   charImg = document.getElementById(character);
+  if (prone) {
+    goProne(charImg)
+  }
+  else if (stand){
+    goUnProne(charImg);
+  }
+  else if (biggerSwitch){
+    bigger(charImg)
+  }
+  else if (smallerSwitch){
+    smaller(charImg)
+  }
+  else{
+    charClicked = true;
+  }
 }
 
-function prone(charImg) {
-  if(character[0] !== "C")
-  charImg.src = "./images/" + character + "prone.png";
+function goProne(charImg) {
+    prone = false;
+    if(character[0] !== "C")
+      charImg.src = "./images/" + character + "prone.png";
 }
-function unprone(charImg) {
-  if (character[0] !== "C")
-  charImg.src = "./images/" + character + ".png";
+function goUnProne(charImg) {
+    stand = false;
+    if(character[0] !== "C")
+      charImg.src = "./images/" + character + ".png";
 }
 
-function clickMove(charImg) {
-  cMove = true;
-}
 function changeBG(input) {
 
   document.getElementById('bg').style.display = "block";
@@ -187,19 +217,21 @@ function docReady() {
       fire(charImg);
     }
     if (key.keyCode === 80) {
-      prone(charImg);
+      prone = true;
     }
     if (key.keyCode === 83) {
-      unprone(charImg);
+      stand = true;
     }
     if (key.keyCode === 77) {
       clickMove(charImg);
     }
     if (key.keyCode === 187) {
-      bigger(charImg);
+      smallerSwitch = false;
+      biggerSwitch = !biggerSwitch;
     }
     if (key.keyCode === 189) {
-      smaller(charImg);
+      biggerSwitch = false;
+      smallerSwitch = !smallerSwitch;
     }
   }
   KeyboardController({
