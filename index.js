@@ -39,11 +39,22 @@ function mouseClicked(e, char) {
 
 function move(e) {
   var div = document.getElementById(character);
+  let imwidth = charImg.clientWidth;
+  let imheight = charImg.clientHeight;
+
   div.style.position = 'absolute';
   let topAmount = e.clientY - mouseClickOffsexY;
+  let bott = document.getElementById("bottomborder").offsetTop - topAmount - imheight;
+  let top = topAmount;
+  if (bott > 0 && top > 0) {
   div.style.top = topAmount + 'px';
+  }
   let leftAmount = e.clientX - mouseClickOffsetX;
-  div.style.left = leftAmount + 'px';
+  let right = document.getElementById("rightborder").offsetLeft - leftAmount - imwidth;
+  let left = leftAmount
+  if (right > 0 && left > 0) {
+    div.style.left = leftAmount + 'px';
+  }
 }
 
 function showRules() {
