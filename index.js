@@ -69,12 +69,12 @@ function chooseCharacter(charName) {
 
 function goProne(charImg) {
   charImg.style.transform = 'rotate(90deg)';
-
 }
 
 function stand(charImg) {
   charImg.style.transform = 'rotate(0deg)';
 }
+
 function deleteChar(charImg) {
   if (npcs.includes(charImg.id)) {
     charImg.src = "";
