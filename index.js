@@ -63,7 +63,9 @@ function smaller(charImg) {
 
 function chooseCharacter(charName) {
   character = charName;
+  charImg.style.zIndex = 4;
   charImg = document.getElementById(character);
+  charImg.style.zIndex = 5;
   document.getElementById("currChar").src = charImg.src;
 }
 
