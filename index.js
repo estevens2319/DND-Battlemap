@@ -48,12 +48,13 @@ function move(e) {
 
 function showRules() {
   let rules = "How to navigate the map." + '\n' + '\n' + "To change background:" + '\n' + "Click the background button and select a file for the background." + '\n' + '\n' + "To move a character:" + '\n' + "Click and drag a character around map or use arrow keys." + '\n' + '\n' + "To add new characters:" + '\n' + "Click a C# button to add or change the icon of that character number" + '\n'
-    + '\n' + "To delete a character: (Player characters cannot be deleted) " + '\n' + "Click on a character, press Delete key" + '\n' + '\n' + "To make a character prone/stand: (Uploaded characters cannot go prone) " + '\n' + "Click on a character, press P/S key" + '\n' + '\n' + "To enlarge / shrink a character" + '\n' + "Click a character, press =/- key.";
+    + '\n' + "To delete a character: (Player characters cannot be deleted) " + '\n' + "Click on a character, press Delete key" + '\n' + '\n' + "To make a character prone/stand: " + '\n' + "Click on a character, press P/S key" + '\n' + '\n' + "To enlarge / shrink a character" + '\n' + "Click a character, press =/- key.";
   alert(rules);
 }
 
 function bigger(charImg) {
   charImg.width = JSON.stringify(charImg.width + 10);
+
 }
 
 function smaller(charImg) {
@@ -67,15 +68,12 @@ function chooseCharacter(charName) {
 }
 
 function goProne(charImg) {
-  if (!npcs.includes(charImg.id)) {
-    charImg.src = "./images/" + character + "prone.png";
-  }
+  charImg.style.transform = 'rotate(90deg)';
+
 }
 
 function stand(charImg) {
-  if (!npcs.includes(charImg.id)) {
-    charImg.src = "./images/" + character + ".png";
-  }
+  charImg.style.transform = 'rotate(0deg)';
 }
 function deleteChar(charImg) {
   if (npcs.includes(charImg.id)) {
