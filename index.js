@@ -1,11 +1,13 @@
 let character = "eric";
 let speed = 1;
 let charImg = document.getElementById(character);
-let characterList = ["eric", "jack", "matt", "haylee", "nicole", "adam", "travis", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "C10"];
+let players = ["eric", "jack", "matt", "haylee", "nicole", "adam", "travis"];
+let npcs = ["C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "C10"];
+let characterList = players.concat(npcs);
 let mouseClickX = 0;
 let mouseClickY = 0;
 let mouseClickOffsetX = 0;
-let mouseClickOffsexY = 0; 
+let mouseClickOffsexY = 0;
 
 function mouseReleased() {
   window.removeEventListener('mousemove', move, true);
@@ -18,19 +20,19 @@ function mouseClicked(e, char) {
   var div = document.getElementById(character);
   let leftPart = "";
   if (!div.style.left)
-    leftPart += "0px";  
+    leftPart += "0px";
   else
     leftPart = div.style.left;
   let leftPos = leftPart.indexOf("px");
-  let leftNumString = leftPart.slice(0, leftPos); 
+  let leftNumString = leftPart.slice(0, leftPos);
   mouseClickOffsetX = mouseClickX - parseInt(leftNumString, 10);
   let topPart = "";
   if (!div.style.top)
-    topPart += "0px";   
+    topPart += "0px";
   else
     topPart = div.style.top;
   let topPos = topPart.indexOf("px");
-  let topNumString = topPart.slice(0, topPos);  
+  let topNumString = topPart.slice(0, topPos);
   mouseClickOffsexY = mouseClickY - parseInt(topNumString, 10);
   window.addEventListener('mousemove', move, true);
 }
@@ -44,33 +46,43 @@ function move(e) {
   div.style.left = leftAmount + 'px';
 }
 
-function showRules(){
-  let rules = "How to navigate the map." + '\n' + "To change background:" + '\n' + "Click the background button and select a file for the background." + '\n' + "To move a character:" + '\n' + "Click and drag a character around map or use arrow keys." + '\n' + "To add new characters:" + '\n' + "Click a C# button to add or change the icon of that character number" + '\n' 
-    + "To make a character prone: (Uploaded characters cannot go prone) " + '\n' + "Click on a character, press P key" + '\n' + "To make a character stand: " + '\n' + "Click on a character, press S key" + '\n' + "To enlarge / shrink a character" + '\n' + "Click a character, press =/- key.";
+function showRules() {
+  let rules = "How to navigate the map." + '\n' + '\n' + "To change background:" + '\n' + "Click the background button and select a file for the background." + '\n' + '\n' + "To move a character:" + '\n' + "Click and drag a character around map or use arrow keys." + '\n' + '\n' + "To add new characters:" + '\n' + "Click a C# button to add or change the icon of that character number" + '\n'
+    + '\n' + "To delete a character: (Player characters cannot be deleted) " + '\n' + "Click on a character, press Delete key" + '\n' + '\n' + "To make a character prone/stand: (Uploaded characters cannot go prone) " + '\n' + "Click on a character, press P/S key" + '\n' + '\n' + "To enlarge / shrink a character" + '\n' + "Click a character, press =/- key.";
   alert(rules);
 }
 
-function bigger(charImg){
+function bigger(charImg) {
   charImg.width = JSON.stringify(charImg.width + 10);
 }
 
-function smaller(charImg){
-charImg.width = JSON.stringify(charImg.width - 10);
+function smaller(charImg) {
+  charImg.width = JSON.stringify(charImg.width - 10);
 }
 
 function chooseCharacter(charName) {
   character = charName;
   charImg = document.getElementById(character);
+  document.getElementById("currChar").src = charImg.src;
 }
 
 function goProne(charImg) {
-    if(character[0] !== "C")
-      charImg.src = "./images/" + character + "prone.png";
+  if (!npcs.includes(charImg.id)) {
+    charImg.src = "./images/" + character + "prone.png";
+  }
 }
 
 function stand(charImg) {
-    if(character[0] !== "C")
-      charImg.src = "./images/" + character + ".png";
+  if (!npcs.includes(charImg.id)) {
+    charImg.src = "./images/" + character + ".png";
+  }
+}
+function deleteChar(charImg) {
+  if (npcs.includes(charImg.id)) {
+    charImg.src = "";
+    document.getElementById("currChar").src = "";
+
+  }
 }
 
 function changeBG(input) {
@@ -195,6 +207,9 @@ function docReady() {
     }
     if (key.keyCode === 189) {
       smaller(charImg);
+    }
+    if (key.keyCode === 46) {
+      deleteChar(charImg);
     }
   }
   KeyboardController({
