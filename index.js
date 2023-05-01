@@ -52,7 +52,7 @@ function move(e) {
   let leftAmount = e.clientX - mouseClickOffsetX;
   let right = document.getElementById("rightborder").offsetLeft - leftAmount - imwidth;
   let left = leftAmount
-  if (right > 0 && left > 0) {
+  if (right > 0 && left > 0 ) {
     div.style.left = leftAmount + 'px';
   }
 }
