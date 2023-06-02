@@ -2,16 +2,46 @@ let character = "eric";
 let speed = 1;
 let charImg = document.getElementById(character);
 let players = ["eric", "jack", "matt", "haylee", "nicole", "adam", "travis"];
-let npcs = ["C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "C10"];
+let npcs = [];
 let characterList = players.concat(npcs);
 let mouseClickX = 0;
 let mouseClickY = 0;
 let mouseClickOffsetX = 0;
 let mouseClickOffsexY = 0;
+let cNum = 0;
 
 function mouseReleased() {
   window.removeEventListener('mousemove', move, true);
 }
+
+
+function addC(input, C) {
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+      var img = document.createElement("img");
+      reader.onload = function (e) {
+        img.src = e.target.result;
+      } 
+      var src = document.getElementById("body");
+      const curID = String(cNum);
+      npcs.push(curID);
+      img.setAttribute('id', curID);
+      img.setAttribute('style', "position:absolute;left: 100px; top:500px;z-index: 4");
+      img.setAttribute('width',  "4%");
+      var str = "chooseCharacter('" + curID + "')";
+      img.setAttribute('onClick', str);
+      img.setAttribute('ondragstart', "return false;");
+      src.appendChild(img);
+      let image = document.getElementById(curID);
+      image.addEventListener('mousedown', function (e) {
+        mouseClicked(e, curID);
+      }, false);
+    reader.readAsDataURL(input.files[0]);
+  }
+  cNum += 1;
+}
+
 
 function mouseClicked(e, char) {
   chooseCharacter(char);
@@ -58,7 +88,7 @@ function move(e) {
 }
 
 function showRules() {
-  let rules = "How to navigate the map." + '\n' + '\n' + "To change background:" + '\n' + "Click the background button and select a file for the background." + '\n' + '\n' + "To move a character:" + '\n' + "Click and drag a character around map or use arrow keys." + '\n' + '\n' + "To add new characters:" + '\n' + "Click a C# button to add or change the icon of that character number" + '\n'
+  let rules = "How to navigate the map." + '\n' + '\n' + "To change background:" + '\n' + "Click the background button and select a file for the background." + '\n' + '\n' + "To move a character:" + '\n' + "Click and drag a character around map or use arrow keys." + '\n' + '\n' + "To add new characters:" + '\n' + "Click the Add Character button" + '\n'
     + '\n' + "To delete a character: (Player characters cannot be deleted) " + '\n' + "Click on a character, press Delete key" + '\n' + '\n' + "To make a character prone/stand: " + '\n' + "Click on a character, press P/S key" + '\n' + '\n' + "To enlarge / shrink a character" + '\n' + "Click a character, press =/- key.";
   alert(rules);
 }
@@ -73,6 +103,7 @@ function smaller(charImg) {
 }
 
 function chooseCharacter(charName) {
+  
   character = charName;
   charImg.style.zIndex = 4;
   charImg = document.getElementById(character);
@@ -92,7 +123,6 @@ function deleteChar(charImg) {
   if (npcs.includes(charImg.id)) {
     charImg.src = "";
     document.getElementById("currChar").src = "";
-
   }
 }
 
@@ -102,17 +132,6 @@ function changeBG(input) {
     var reader = new FileReader();
     reader.onload = function (e) {
       document.getElementById('bg').src = e.target.result;
-    }
-    reader.readAsDataURL(input.files[0]);
-  }
-}
-
-function changeC(input, C) {
-  document.getElementById(C).style.display = "block";
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-    reader.onload = function (e) {
-      document.getElementById(C).src = e.target.result;
     }
     reader.readAsDataURL(input.files[0]);
   }
