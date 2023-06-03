@@ -14,6 +14,9 @@ function mouseReleased() {
   window.removeEventListener('mousemove', move, true);
 }
 
+function doSomething(){
+  alert("thisis a");
+}
 
 function addC(input, C) {
 
